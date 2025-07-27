@@ -1,3 +1,4 @@
+# extract the forex values only in the specified date range
 import pandas as pd
 
 df = pd.read_csv("data/forex/daily_forex_rates.csv") 

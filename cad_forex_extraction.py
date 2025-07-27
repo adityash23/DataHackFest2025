@@ -1,3 +1,4 @@
+# extract CAD forex rates from dataset with multiple currencies
 import pandas as pd
 
 df = pd.read_csv("data/forex/filtered_forex_rates.csv") 

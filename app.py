@@ -31,6 +31,36 @@ def exchange(df):
 
     st.altair_chart(chart, use_container_width=True)
 
+def home():
+    st.header("Home")
+    st.write("Welcome to the Forex Rate Predictor equiped with News Sentiment Analysis!")
+
+    # Load CSV data
+    df_plot = pd.read_csv("data/plot/plot_data.csv")
+
+    dates = pd.read_csv('data/merged.csv')['Date'].values
+
+    # Convert 'date' column to datetime if needed
+    df_plot['date'] = pd.to_datetime(df_plot['date'])
+
+    # Plotting with matplotlib
+    fig, ax = plt.subplots(figsize=(20, 10))
+
+    ax.plot(dates, df_plot['actual'], label='Actual')
+    ax.plot(dates, df_plot['predicted'], label='Predicted Train')
+    #ax.plot(dates, df_plot['predicted_test'], label='Predicted Test')
+
+    ax.set_xlabel("Date")
+    ax.set_ylabel("Exchange Rate")
+    ax.set_title("Actual vs Predicted Exchange Rate")
+    ax.legend()
+    ax.grid(True)
+    plt.xticks(rotation=90)
+
+    # Display in Streamlit
+    st.pyplot(fig)
+
+
 def emotions(df):
     st.header("Emotions")
     emotion_counts = df['emotions'].value_counts()
@@ -40,7 +70,6 @@ def emotions(df):
     ax.set_ylabel("")  
     plt.tight_layout(pad=0.5)
     st.pyplot(fig)
-
 
 st.title("DataHackFest 2025")
 st.text("This is a forex rate predictor with news sentiment analysis")
@@ -54,7 +83,9 @@ options = st.sidebar.radio("View the dataset:", ("Home", "General statistics", "
 # datasets and page setup
 df = pd.read_csv("data/forex/filtered_forex_rates.csv")
 
-if options == "General statistics":
+if options == "Home":
+    home()
+elif options == "General statistics":
     stats(df)
 elif options == "Exchange Rates":
     exchange(df)
