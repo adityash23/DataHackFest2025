@@ -20,21 +20,22 @@ def calculateDailySentiment(headlines):
         outputs = model(**inputs)
         logits = outputs.logits
         scores = logits.softmax(dim=1)
-    averageScore = scores.mean(dim=0).tolist()
-    return averageScore
+
+    avg_score = scores.mean(dim=0).tolist()
+    return avg_score
 
 def analyzeAndSaveSentiment(inputFile, outputFile):
-    with open(inputFile, 'r') as file:
+    with open(inputFile, 'r', encoding='utf-8') as file:
         data = json.load(file)
 
     result = {}
 
     for date, headlines in data.items():
-        averageScore = calculateDailySentiment(headlines)
-        print(f"{date} > {averageScore}")
-        result[date] = averageScore
+        avg_score = calculateDailySentiment(headlines)
+        print(f"{date} > {avg_score}")
+        result[date] = {"negative": avg_score[0], "positive": avg_score[1]}
 
-    with open(outputFile, 'w') as outputFile:
+    with open(outputFile, 'w', encoding='utf-8') as outputFile:
         json.dump(result, outputFile, indent=2)
 
 input_json_file = './data/news/headlines.json'
