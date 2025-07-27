@@ -19,8 +19,8 @@ def genres(df):
 def emotions(df):
     st.header("Emotions")
     emotion_counts = df['emotions'].value_counts()
-    fig, ax = plt.subplots(figsize=(3, 3))
-    emotion_counts.plot(kind='pie', autopct='%1.1f%%', startangle=140, ax=ax)
+    fig, ax = plt.subplots(figsize=(1.5, 1.5))
+    emotion_counts.plot(kind='pie', autopct='%1.1f%%', startangle=140, ax=ax, textprops={'fontsize': 5})
     #ax.set_title("Emotion distribution")
     ax.set_ylabel("")  
     plt.tight_layout(pad=0.5)
@@ -63,4 +63,5 @@ while not output_bool:
     if output_bool:
         break
 
+#st.experimental_rerun()
 st.write("Your playlist is generated successfully!")
