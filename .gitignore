@@ -2,3 +2,4 @@ venv/
 .env
 data/news/headlines.json
 data/news/daily_scores.json
+data/forex/

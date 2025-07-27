@@ -10,7 +10,6 @@ model.eval()
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model.to(device)
 
-
 def calculateDailySentiment(headlines):
     texts = [headline['heading'] for headline in headlines]
     inputs = tokenizer(texts, return_tensors="pt", 
