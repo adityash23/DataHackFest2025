@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import random
 import altair as alt
 
-# Code below to be moved to a new folder to modularize it
+# code below to be moved to a new folder to modularize it
 def stats(df):
     st.header("General Statistics")
     st.write(df.describe())
@@ -47,15 +47,12 @@ st.text("This is a forex rate predictor with news sentiment analysis")
 
 st.sidebar.title("Nav")
 
-uploaded_file = st.sidebar.file_uploader("Upload a custom csv file with your personal music emotions", type=["csv"])
+# uploaded_file = st.sidebar.file_uploader("Upload a custom csv file with your personal music emotions", type=["csv"])
 
 options = st.sidebar.radio("View the dataset:", ("Home", "General statistics", "Exchange Rates", "Emotions"))
 
 # datasets and page setup
-if uploaded_file:
-    df = pd.read_csv(uploaded_file)
-else:
-    df = pd.read_csv("data/forex/filtered_forex_rates.csv")
+df = pd.read_csv("data/forex/filtered_forex_rates.csv")
 
 if options == "General statistics":
     stats(df)

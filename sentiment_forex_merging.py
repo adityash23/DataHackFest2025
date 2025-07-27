@@ -22,7 +22,8 @@ df_sentimentColumns.rename(columns={'negative': 'sentiment_negative',
 df_merged = pd.concat([df_merged.drop(columns='sentiment'), df_sentimentColumns], axis=1)
 #df_merged = pd.concat([df_merged, df_sentimentColumns], axis=1)
 
-df_merged = df_merged.drop(columns=['date', 'jsonDate', 'base_currency', 'currency_name', 'currency'])
+df_merged = df_merged.drop(columns=['jsonDate', 'base_currency', 'currency_name', 'currency'])
 print(df_merged.head())
 
+df_merged = df_merged.sort_values(by='date', ascending=True)
 df_merged.to_csv('data/merged.csv', index=False)
