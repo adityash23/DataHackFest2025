@@ -3,3 +3,4 @@ venv/
 data/news/headlines.json
 data/news/daily_scores.json
 data/forex/
+app-old.py
